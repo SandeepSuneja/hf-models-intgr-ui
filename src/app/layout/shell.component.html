@@ -1,0 +1,64 @@
+<mat-sidenav-container class="shell-container">
+  <mat-sidenav
+    #drawer
+    class="shell-sidenav"
+    [mode]="isHandset() ? 'over' : 'side'"
+    [opened]="!isHandset()"
+    [fixedInViewport]="isHandset()"
+  >
+    <div class="shell-sidenav__brand">
+      <span class="shell-sidenav__logo" aria-hidden="true">✦</span>
+      <span class="shell-sidenav__brand-text">Workspace</span>
+    </div>
+    <mat-nav-list class="shell-nav-list">
+      <a
+        mat-list-item
+        class="shell-nav-link"
+        routerLink="/translate"
+        routerLinkActive="shell-nav-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="closeDrawerIfHandset()"
+      >
+        <mat-icon matListItemIcon class="shell-nav-link__icon">translate</mat-icon>
+        <span matListItemTitle>Translation</span>
+      </a>
+      <a
+        mat-list-item
+        class="shell-nav-link"
+        routerLink="/speech"
+        routerLinkActive="shell-nav-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="closeDrawerIfHandset()"
+      >
+        <mat-icon matListItemIcon class="shell-nav-link__icon">mic_none</mat-icon>
+        <span matListItemTitle>Speech to text</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="shell-content">
+    <mat-toolbar class="shell-toolbar">
+      @if (isHandset()) {
+        <button
+          mat-icon-button
+          type="button"
+          class="shell-menu-btn"
+          aria-label="Open navigation"
+          (click)="drawer.toggle()"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+      }
+      <mat-icon class="shell-toolbar__spark" aria-hidden="true">auto_awesome</mat-icon>
+      <div class="shell-toolbar__titles">
+        <span class="shell-toolbar__title">Text & Speech AI</span>
+        <span class="shell-toolbar__tagline">Multilingual translation & voice capture</span>
+      </div>
+      <span class="shell-toolbar__spacer"></span>
+      <span class="shell-toolbar__pill" aria-hidden="true">Beta</span>
+    </mat-toolbar>
+    <main class="shell-main">
+      <router-outlet />
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

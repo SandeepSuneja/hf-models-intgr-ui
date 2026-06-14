@@ -1,0 +1,89 @@
+<div class="feature feature--translate">
+  <mat-card class="feature-card">
+    <div class="feature-card__glow" aria-hidden="true"></div>
+    <mat-card-header class="feature-card__header">
+      <div class="feature-icon feature-icon--translate" aria-hidden="true">
+        <mat-icon>translate</mat-icon>
+      </div>
+      <div class="feature-card__header-text">
+        <mat-card-title class="feature-title">English → Indian languages</mat-card-title>
+        <mat-card-subtitle class="feature-subtitle">
+          Pick a language, paste English — the app calls your backend at <code>POST /translate</code> (see
+          <code>environment.apiBaseUrl</code>).
+        </mat-card-subtitle>
+      </div>
+    </mat-card-header>
+
+    <mat-card-content class="translation-body">
+      <div class="field-row">
+        <mat-form-field appearance="outline" class="full-width field-tint field-tint--indigo">
+          <mat-label>Target language</mat-label>
+          <mat-select [(ngModel)]="targetCode" name="targetLang">
+            @for (lang of languages; track lang.translationCode) {
+              <mat-option [value]="lang.translationCode">{{ lang.label }}</mat-option>
+            }
+          </mat-select>
+          <mat-icon matSuffix class="field-suffix-icon">public</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline" class="full-width field-tint field-tint--slate">
+        <mat-label>English text</mat-label>
+        <textarea
+          matInput
+          name="english"
+          rows="5"
+          [(ngModel)]="englishText"
+          placeholder="Type or paste English text here…"
+        ></textarea>
+        <mat-hint align="end">{{ englishText.length }} characters</mat-hint>
+      </mat-form-field>
+
+      @if (error()) {
+        <div class="translation-error" role="alert">
+          <mat-icon>error_outline</mat-icon>
+          <span>{{ error() }}</span>
+        </div>
+      }
+
+      <div class="output-panel">
+        <mat-form-field appearance="outline" class="full-width output-panel__field">
+          <mat-label>Translation</mat-label>
+          <textarea matInput rows="5" [value]="translatedText" readonly placeholder="Translation appears here…"></textarea>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions class="feature-actions" align="end">
+      <button
+        mat-stroked-button
+        type="button"
+        class="btn-secondary"
+        (click)="clear()"
+        [disabled]="loading()"
+      >
+        <mat-icon>refresh</mat-icon>
+        Clear
+      </button>
+      @if (loading()) {
+        <button mat-flat-button type="button" class="btn-primary-gradient" disabled>
+          <span class="translate-btn-progress">
+            <mat-spinner diameter="20" />
+            Translating…
+          </span>
+        </button>
+      } @else {
+        <button
+          mat-flat-button
+          color="primary"
+          type="button"
+          class="btn-primary-gradient"
+          (click)="translate()"
+        >
+          <mat-icon matButtonIcon>bolt</mat-icon>
+          Translate
+        </button>
+      }
+    </mat-card-actions>
+  </mat-card>
+</div>
