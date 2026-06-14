@@ -1,59 +1,47 @@
-# TextSpeechAiFrontend
+# hf-models-intgr-ui
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.10.
-
-## Development server
-
-To start a local development server, run:
+React UI for Hugging Face model integration — English-to-Indian-language translation and speech-to-text, backed by the `text-speech-ai-backend` FastAPI service.
 
 ```bash
-ng serve
+git clone <repository-url>
+cd hf-models-intgr-ui
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Features
 
-## Code scaffolding
+- **Translation** (`/translate`) — paste English text and translate to Hindi, Bengali, Punjabi, Tamil, Telugu, or Marathi via `POST /translate`.
+- **Speech to text** (`/speech`) — record audio, transcribe via `POST /speech-to-text`, then auto-translate the transcript.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Prerequisites
+
+- Node.js 20+
+- Backend running at `http://localhost:8000` (see `text-speech-ai-backend`)
+
+## Development
 
 ```bash
-ng generate component component-name
+npm install
+npm run dev
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Open [http://localhost:4200](http://localhost:4200). The dev server uses port 4200 to match the previous Angular setup.
+
+### API base URL
+
+Set `VITE_API_BASE_URL` in `.env.development` (default: `http://localhost:8000`). For production builds, leave it empty to use same-origin relative paths.
+
+## Build
 
 ```bash
-ng generate --help
+npm run build
+npm run preview
 ```
 
-## Building
+Output is written to `dist/`.
 
-To build the project run:
+## Stack
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- React 19 + TypeScript
+- Vite 6
+- React Router 7
+- MUI (Material UI) 6

@@ -1,0 +1,38 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  min-height: 100dvh;
+  color: #1e293b;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  background-color: #f1f5f9;
+  background-image:
+    radial-gradient(ellipse 100% 80% at 0% -30%, color-mix(in srgb, #4338ca 22%, transparent), transparent 55%),
+    radial-gradient(ellipse 80% 60% at 100% -10%, color-mix(in srgb, #c026d3 18%, transparent), transparent 50%),
+    radial-gradient(ellipse 70% 50% at 50% 110%, color-mix(in srgb, #0ea5e9 14%, transparent), transparent 45%);
+  background-attachment: fixed;
+}
+
+#root {
+  display: block;
+  height: 100%;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  font-size: 0.85em;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  background: color-mix(in srgb, #6366f1 10%, transparent);
+}
